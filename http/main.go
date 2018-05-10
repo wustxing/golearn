@@ -24,10 +24,10 @@ func (s Struct) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.Handle("/string", String("I am xujialong"))
+	http.Handle("/", String("I am xujialong"))
 	http.Handle("/struct", &Struct{"Hello", ":", "Xujialong"})
 
-	err := http.ListenAndServe("localhost:4040", nil)
+	err := http.ListenAndServe(":8888", nil)
 
 	if err != nil {
 		log.Fatal(err)
