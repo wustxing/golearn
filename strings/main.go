@@ -17,5 +17,5 @@ func main(){
 		fieldstring = append(fieldstring, k);
 	}
 
-	fmt.Println(strings.Join(fieldstring,","))
+	fmt.Println(strings.Join(fieldstring,",,"))
 }
