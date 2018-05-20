@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package test;
+enum GenderType{
+    NULL=0;
+    GIRL=1;
+    BOY=2;
+}
+
+message ComplexObj{
+    map<string,MapValue> map = 1;
+    int32 complexid = 2;
+}
+
+message MapValue{
+    string name = 1;
+    int32 age =2;
+    GenderType genderType = 3;
+}
