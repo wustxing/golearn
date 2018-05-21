@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab184cac-a111-4fa6-926f-7fedd637cc84" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/mysql/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql/pb/map.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysql/pb/test.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/protobuf/pb/test.pb.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/squirrel/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protobuf/add_person_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/protobuf/hello.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/protobuf/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/protobuf/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protobuf/pb/addressbook.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/protobuf/pb/addressbook.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cron/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cron/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/main.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,17 +19,8 @@
       <file leaf-file-name="lib.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../golang/protobuf/proto/lib.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9240">
+            <state relative-caret-position="9438">
               <caret line="429" column="16" selection-start-line="429" selection-start-column="16" selection-end-line="429" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="text.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../golang/protobuf/proto/text.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17798">
-              <caret line="821" column="14" selection-start-line="821" selection-start-column="11" selection-end-line="821" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -43,8 +28,8 @@
       <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protobuf/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+            <state relative-caret-position="770">
+              <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -52,20 +37,50 @@
       <file leaf-file-name="test.pb.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysql/pb/test.pb.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-118">
-              <caret line="137" column="17" lean-forward="true" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
+            <state relative-caret-position="2970">
+              <caret line="137" column="17" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysql/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="89" column="16" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
+              <folding>
+                <element signature="e#14#154#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mysql/main.go">
+        <entry file="file://$PROJECT_DIR$/cron/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="142">
+              <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
               <folding>
-                <element signature="e#14#43#0" expanded="true" />
+                <element signature="e#14#58#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map.proto" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mysql/pb/map.proto">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/squirrel/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -73,8 +88,8 @@
       <file leaf-file-name="map.pb.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysql/pb/map.pb.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-308">
-              <caret line="24" column="34" lean-forward="true" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+            <state relative-caret-position="484">
+              <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -88,24 +103,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="proc.go" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Go/src/runtime/proc.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4400">
-              <caret line="204" column="59" selection-start-line="204" selection-start-column="59" selection-end-line="204" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protobuf/test.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file leaf-file-name="table_marshal.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../golang/protobuf/proto/table_marshal.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
+            <state relative-caret-position="57530">
               <caret line="2615" column="5" selection-start-line="2615" selection-start-column="5" selection-end-line="2615" selection-end-column="5" />
             </state>
           </provider>
@@ -153,7 +154,9 @@
         <option value="$PROJECT_DIR$/flag/main.go" />
         <option value="$PROJECT_DIR$/strings/main.go" />
         <option value="$PROJECT_DIR$/protobuf/main.go" />
+        <option value="$PROJECT_DIR$/squirrel/main.go" />
         <option value="$PROJECT_DIR$/mysql/main.go" />
+        <option value="$PROJECT_DIR$/cron/main.go" />
       </list>
     </option>
   </component>
@@ -167,9 +170,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="377" />
-    <option name="y" value="39" />
-    <option name="width" value="1030" />
+    <option name="x" value="134" />
+    <option name="y" value="-28" />
+    <option name="width" value="1325" />
     <option name="height" value="788" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -180,6 +183,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,24 +194,12 @@
             <path>
               <item name="golearn" type="b2602c69:ProjectViewProjectNode" />
               <item name="golearn" type="462c0819:PsiDirectoryNode" />
-              <item name="mysql" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="golearn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="golearn" type="462c0819:PsiDirectoryNode" />
-              <item name="mysql" type="462c0819:PsiDirectoryNode" />
-              <item name="pb" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="golearn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="golearn" type="462c0819:PsiDirectoryNode" />
-              <item name="protobuf" type="462c0819:PsiDirectoryNode" />
+              <item name="cron" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -246,22 +238,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go (1)">
-    <configuration name="flag" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
-      <module name="golearn" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <parameters value="-name hixujialong" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/flag/main.go" />
-      <directory value="$PROJECT_DIR$/" />
-    </configuration>
+  <component name="RunManager" selected="Go Build.go build main.go (3)">
     <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="golearn" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/mysql/main.go" />
+      <directory value="$PROJECT_DIR$/" />
+    </configuration>
+    <configuration name="go build main.go (2)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="golearn" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/squirrel/main.go" />
+      <directory value="$PROJECT_DIR$/" />
+    </configuration>
+    <configuration name="go build main.go (3)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="golearn" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/cron/main.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
     <configuration name="go build main.go protobuf" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
@@ -280,43 +279,34 @@
       <filePath value="$PROJECT_DIR$/strings/main.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
-    <configuration name="tabtoy" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
-      <module name="golearn" />
-      <working_directory value="$PROJECT_DIR$/tabtoy" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/tabtoy/main.go" />
-      <directory value="$PROJECT_DIR$/" />
-    </configuration>
     <list>
-      <item itemvalue="Go Build.tabtoy" />
-      <item itemvalue="Go Build.flag" />
       <item itemvalue="Go Build.go build main.go" />
       <item itemvalue="Go Build.go build main.go protobuf" />
       <item itemvalue="Go Build.go build main.go (1)" />
+      <item itemvalue="Go Build.go build main.go (2)" />
+      <item itemvalue="Go Build.go build main.go (3)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build main.go (3)" />
         <item itemvalue="Go Build.go build main.go (1)" />
+        <item itemvalue="Go Build.go build main.go (2)" />
         <item itemvalue="Go Build.go build main.go protobuf" />
         <item itemvalue="Go Build.go build main.go" />
-        <item itemvalue="Go Build.flag" />
-        <item itemvalue="Go Build.tabtoy" />
       </list>
     </recent_temporary>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20131771" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.35015774" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23974763" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.31072554" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -328,25 +318,26 @@
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32876712" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.35015774" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24973205" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.35494882" />
-      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.39915523" />
       <window_info anchor="right" id="Database" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="5" />
       <window_info id="Favorites" order="0" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -358,23 +349,23 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="sdfsf" />
-    <option name="LAST_COMMIT_MESSAGE" value="sdfsf" />
+    <MESSAGE value="proto和mysql用法" />
+    <option name="LAST_COMMIT_MESSAGE" value="proto和mysql用法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/mysql/main.go</url>
+          <line>2</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/interface/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Go/src/net/http/server.go" />
-    <entry file="file://D:/Go/src/reflect/type.go" />
     <entry file="file://$PROJECT_DIR$/http/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -546,9 +537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-          <folding>
-            <element signature="e#14#42#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -571,21 +559,21 @@
     </entry>
     <entry file="file://C:/Go/src/runtime/proc.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4400">
+        <state relative-caret-position="4488">
           <caret line="204" column="59" selection-start-line="204" selection-start-column="59" selection-end-line="204" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../golang/protobuf/proto/text.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17798">
+        <state relative-caret-position="18062">
           <caret line="821" column="14" selection-start-line="821" selection-start-column="11" selection-end-line="821" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../golang/protobuf/proto/lib.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9240">
+        <state relative-caret-position="9438">
           <caret line="429" column="16" selection-start-line="429" selection-start-column="16" selection-end-line="429" selection-end-column="16" />
         </state>
       </provider>
@@ -599,38 +587,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mysql/pb/test.pb.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-118">
-          <caret line="137" column="17" lean-forward="true" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
+        <state relative-caret-position="2970">
+          <caret line="137" column="17" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protobuf/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+        <state relative-caret-position="770">
+          <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../golang/protobuf/proto/table_marshal.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
+        <state relative-caret-position="57530">
           <caret line="2615" column="5" selection-start-line="2615" selection-start-column="5" selection-end-line="2615" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysql/pb/map.pb.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-308">
-          <caret line="24" column="34" lean-forward="true" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        <state relative-caret-position="484">
+          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mysql/pb/map.proto">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/squirrel/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mysql/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        <state relative-caret-position="275">
+          <caret line="89" column="16" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
           <folding>
-            <element signature="e#14#43#0" expanded="true" />
+            <element signature="e#14#154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cron/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+          <folding>
+            <element signature="e#14#58#0" expanded="true" />
           </folding>
         </state>
       </provider>

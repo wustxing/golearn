@@ -6,6 +6,7 @@ import(
 	"fmt"
 	"github.com/golang/protobuf/proto"
 	"github.com/0990/golearn/mysql/pb"
+	sq "github.com/Masterminds/squirrel"
 )
 
 func getPb()[]byte{
@@ -72,6 +73,8 @@ func main(){
 	//}
 
 	//db.Exec("replace into pb(id,data)values '%s'",)
+	query:=sq.Insert("pb").Columns("id","data").Values(2,[]byte("hi")).RunWith(db)
+	query.QueryRow()
 	rows,err:=db.Query("select id,data from pb where id = 1")
 	defer rows.Close()
 
@@ -87,4 +90,17 @@ func main(){
 	if err!=nil{
 		panic(err.Error())
 	}
+
+	user:= sq.Select("*").From("pb").Where(sq.Eq{"id":2})
+	rows1,err := user.RunWith(db).Query()
+	for rows1.Next(){
+		var id int
+		var data []byte
+		err = rows1.Scan(&id,&data)
+		comlexObj:=test.ComplexObj{}
+		proto.Unmarshal(data,&comlexObj)
+		fmt.Println("rows1")
+		fmt.Println(comlexObj)
+	}
+
 }
