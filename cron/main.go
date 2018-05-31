@@ -13,7 +13,7 @@ import (
 //在26分、29分、33分执行一次：0 26,29,33 * * * ?
 //每天的0点、13点、18点、21点都执行一次：0 0 0,13,18,21 * * ?
 func main() {
-	spec := "0 12 23 * * ?"
+	spec := "0 09 21 * * ?"
 	c := cron.New()
 	c.AddFunc(spec, callYourFunc)
 	c.Start()

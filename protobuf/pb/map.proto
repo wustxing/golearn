@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package test;
+message ComplexObj{
+    map<int32,map<int32,int32>> Map = 1;
+}
+

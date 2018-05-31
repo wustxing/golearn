@@ -1,11 +1,9 @@
 package main
 
-import (
-	"fmt"
-)
-
+type hello struct{
+	Map1 map[int32]string
+}
 func main() {
-
-
-	fmt.Println("helloworld")
+	hell := hello{}
+	hell.Map1[1] = "sfdsd"
 }

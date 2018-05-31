@@ -7,7 +7,7 @@ import (
 
 var m *sync.RWMutex
 
-
+var global_int int
 func main(){
 	m = new(sync.RWMutex)
 
@@ -18,11 +18,11 @@ func main(){
 
 func read(i int){
 	println(i,"read start")
-	m.Lock()
-
-	println(i,"reading")
-	time.Sleep(1*time.Second)
-	m.Unlock()
+	m.RLock()
+	global_int = i
+	println(i,global_int,"reading")
+	time.Sleep(2*time.Second)
+	m.RUnlock()
 
 	println(i,"read over")
 }
