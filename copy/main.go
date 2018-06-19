@@ -8,7 +8,7 @@ type Test struct{
 func main(){
 	T1 :=&Test{1}
 	T2:=*T1
-	T3:=&T2
+	//T3:=&T2
 	T1.id = 5
-	fmt.Println(T1,T2,T3)
+	fmt.Println(T1,T2)
 }

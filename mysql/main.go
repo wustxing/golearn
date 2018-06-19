@@ -2,7 +2,6 @@ package main
 
 import(
 	_ "github.com/go-sql-driver/mysql"
-	"database/sql"
 	"fmt"
 	"github.com/golang/protobuf/proto"
 	"github.com/0990/golearn/mysql/pb"
@@ -52,16 +51,16 @@ func getMapPb()[]byte{
 
 
 func main(){
-	db,err:=sql.Open("mysql","root:123456@tcp(127.0.0.1:3306)/test?charset=utf8")
-	if err!=nil{
-		panic(err.Error())
-	}
-	defer db.Close()
-
-	err = db.Ping()
-	if err!=nil{
-		panic(err.Error())
-	}
+	//db,err:=sql.Open("mysql","root:123456@tcp(127.0.0.1:3306)/test?charset=utf8")
+	//if err!=nil{
+	//	panic(err.Error())
+	//}
+	//defer db.Close()
+	//
+	//err = db.Ping()
+	//if err!=nil{
+	//	panic(err.Error())
+	//}
 
 	//stmt,err:=db.Prepare(`replace into pb(id,data)values(?,?)`)
 	//if err!=nil{
@@ -73,25 +72,26 @@ func main(){
 	//}
 
 	//db.Exec("replace into pb(id,data)values '%s'",)
-	query:=sq.Insert("pb").Columns("id","data").Values(2,[]byte("hi")).RunWith(db)
-	query.QueryRow()
-	rows,err:=db.Query("select id,data from pb where id = 1")
-	defer rows.Close()
+	//query:=sq.Insert("pb").Columns("id","data").Values(2,[]byte("hi")).RunWith(db)
+	//query.QueryRow()
+	//rows,err:=db.Query("select id,data from pb where id = 1")
+	//defer rows.Close()
+	//
+	//for rows.Next(){
+	//	var id int
+	//	var data []byte
+	//	err = rows.Scan(&id,&data)
+	//	comlexObj:=test.ComplexObj{}
+	//	proto.Unmarshal(data,&comlexObj)
+	//	fmt.Println(comlexObj)
+	//}
+	//err = rows.Err()
+	//if err!=nil{
+	//	panic(err.Error())
+	//}
 
-	for rows.Next(){
-		var id int
-		var data []byte
-		err = rows.Scan(&id,&data)
-		comlexObj:=test.ComplexObj{}
-		proto.Unmarshal(data,&comlexObj)
-		fmt.Println(comlexObj)
-	}
-	err = rows.Err()
-	if err!=nil{
-		panic(err.Error())
-	}
-
-	user:= sq.Select("*").From("pb").Where(sq.Eq{"id":2})
+	user:= sq.Select("*").From("pb").Where(sq.Eq{"id":2}).OrderBy("id").Limit(10)
+	fmt.Println(user.ToSql())
 	rows1,err := user.RunWith(db).Query()
 	for rows1.Next(){
 		var id int

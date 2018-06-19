@@ -4,6 +4,9 @@ import (
 	"os"
 
 	"github.com/sirupsen/logrus"
+	"encoding/json"
+	"fmt"
+	"time"
 )
 
 func init() {
@@ -16,6 +19,7 @@ func init() {
 	logrus.AddHook(&DefaultFieldsHook{})
 }
 
+var toWrite chan *logrus.Entry
 
 type Hook interface{
 	Levels()[]logrus.Level
@@ -26,6 +30,10 @@ type DefaultFieldsHook struct{
 }
 func(df *DefaultFieldsHook)Fire(entry *logrus.Entry)error{
 	entry.Data["appName"] = "xujialong"
+
+	//newEntity:=*entry
+	//toWrite<-&newEntity
+	toWrite<-entry
 	return nil
 }
 
@@ -34,6 +42,20 @@ func(df *DefaultFieldsHook)Levels()[]logrus.Level{
 }
 
 func main() {
+
+	toWrite = make(chan *logrus.Entry, 100)
+
+	go func(){
+		for entry:=range toWrite{
+			data, err := json.Marshal(entry.Data)
+			if err==nil{
+				fmt.Println("towrite",string(data))
+			}
+		}
+	}()
+
+	time.Sleep(time.Second*2)
+
 	logrus.WithFields(logrus.Fields{
 		"animal": "dog",
 		"size":   10,
@@ -51,4 +73,7 @@ func main() {
 
 	contextLogger.Info("sdfsf")
 	contextLogger.Warn("me too")
+
+	time.Sleep(time.Second*10)
+
 }
