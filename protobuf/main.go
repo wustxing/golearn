@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/0990/golearn/protobuf/pb"
 	"fmt"
+	"reflect"
 )
 
 type Student struct{
@@ -65,6 +66,7 @@ func main(){
 	//err:=msg.UnmarshalText("",&value)
 	//fmt.Println(err,value)
 	fmt.Println(value)
+	fmt.Println(reflect.TypeOf(value))
 	//write()
 	//read()
 }

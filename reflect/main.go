@@ -20,4 +20,14 @@ func main(){
 	}
 
 	reflect.ValueOf(f).MethodByName("Do").Call([]reflect.Value{})
+
+	fmt.Println(reflect.TypeOf(f))
+	fmt.Println(reflect.ValueOf(f))
+
+	var x int = 1
+	fmt.Println(reflect.TypeOf(x))
+	fmt.Println(reflect.ValueOf(x))
+	fmt.Println(reflect.ValueOf(x).Kind())
+	fmt.Println(reflect.ValueOf(x).Kind()==reflect.Int)
+
 }
