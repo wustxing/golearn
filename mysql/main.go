@@ -82,7 +82,7 @@ func main(){
 	//	var data []byte
 	//	err = rows.Scan(&id,&data)
 	//	comlexObj:=test.ComplexObj{}
-	//	proto.Unmarshal(data,&comlexObj)
+	//	msg.Unmarshal(data,&comlexObj)
 	//	fmt.Println(comlexObj)
 	//}
 	//err = rows.Err()

@@ -29,12 +29,12 @@ type Student struct{
 //	contact.Person = append(contact.Person, &person1)
 //	contact.Person = append(contact.Person,&person2)
 //
-//	data,_ := proto.Marshal(&contact)
+//	data,_ := msg.Marshal(&contact)
 //
-//	str:=proto.MarshalTextString(&contact)
+//	str:=msg.MarshalTextString(&contact)
 //
 //	conta:=test.Contact{}
-//	proto.UnmarshalText(str,&conta)
+//	msg.UnmarshalText(str,&conta)
 //
 //	fmt.Println(str,conta)
 //
@@ -50,7 +50,7 @@ type Student struct{
 //	}
 //
 //	contact:=test.Contact{}
-//	proto.Unmarshal(data,&contact)
+//	msg.Unmarshal(data,&contact)
 //
 //	for _,v := range contact.Person{
 //		fmt.Println(v)
@@ -62,7 +62,7 @@ func main(){
 	value:=test.MapValue{}
 	value.Name = "xu"
 	value.Age = 15
-	//err:=proto.UnmarshalText("",&value)
+	//err:=msg.UnmarshalText("",&value)
 	//fmt.Println(err,value)
 	fmt.Println(value)
 	//write()

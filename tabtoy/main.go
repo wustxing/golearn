@@ -28,7 +28,7 @@ func main(){
 	//}
 	//
 	//pbConfig := &table.Config{}
-	//err = proto.UnmarshalText(string(data),pbConfig)
+	//err = msg.UnmarshalText(string(data),pbConfig)
 	//
 	//fmt.Println(pbConfig,err)
 	//
