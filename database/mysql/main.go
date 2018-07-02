@@ -4,8 +4,9 @@ import(
 	_ "github.com/go-sql-driver/mysql"
 	"fmt"
 	"github.com/golang/protobuf/proto"
-	"github.com/0990/golearn/mysql/pb"
+	"github.com/0990/golearn/database/mysqlase/mysql/pb"
 	sq "github.com/Masterminds/squirrel"
+	"github.com/0990/golearn/database/mysql/pb"
 )
 
 func getPb()[]byte{
