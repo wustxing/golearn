@@ -13,13 +13,9 @@ func main() {
 	m1["c"] = "cc"
 	log.Println(m1)
 
-
-	// 遍历map
-	for k, v := range m1 {
-		log.Println(k, v)
-		delete(m1,k)
-	}
+	m2 :=m1
+	m2["xx"] ="qq"
 
 
-	log.Println(m1)
+	log.Println(m1,m2)
 }
