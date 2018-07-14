@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/0990/golearn/tabtoy/table"
+	"github.com/0990/golearn/github/tabtoy/tabtoy/table"
 )
 
 func main(){

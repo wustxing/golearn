@@ -4,7 +4,7 @@ import(
 	_ "github.com/go-sql-driver/mysql"
 	"fmt"
 	"github.com/golang/protobuf/proto"
-	"github.com/0990/golearn/mysql/pb"
+	"github.com/0990/golearn/github/db/mysqlsql/pb"
 	sq "github.com/Masterminds/squirrel"
 )
 

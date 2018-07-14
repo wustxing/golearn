@@ -3,7 +3,7 @@ package main
 import (
 	"reflect"
 	"fmt"
-	"github.com/0990/golearn/dirtyMap/util"
+	"github.com/0990/golearn/data/dirtyMaptyMap/util"
 )
 
 func set(name string,valueMustBePtr interface{}){

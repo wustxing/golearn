@@ -13,6 +13,9 @@ type Door struct{
 func(d *Door)enterState(e *fsm.Event){
 	fmt.Printf("the door to %s is %s\n",d.To,e.Dst)
 }
+func(d *Door)leaveState(e *fsm.Event){
+	fmt.Printf("leave state,the door to %s is %s\n",d.To,e.Dst)
+}
 
 func NewDoor(to string)*Door{
 	d:=&Door{
@@ -26,6 +29,7 @@ func NewDoor(to string)*Door{
 		},
 		fsm.Callbacks{
 			"enter_state":func(e *fsm.Event){d.enterState(e)},
+			"leave_state":func(e *fsm.Event){d.leaveState(e)},
 		},
 	)
 	return d

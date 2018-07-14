@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/0990/golearn/protobuf/pb"
+	"github.com/0990/golearn/parse/protobufotobuf/pb"
 	"fmt"
 	"reflect"
 )
