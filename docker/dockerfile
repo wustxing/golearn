@@ -1,0 +1,11 @@
+FROM golang:latest
+
+MAINTAINER xujialong "xjlong@outlook.com"
+
+#WORKDIR　$GOPATH/src/github.com/0990/golearn/docker
+ADD . $GOPATH/src/github.com/0990/golearn/docker
+RUN go build .
+
+EXPOSE 8080
+
+ENTRYPOINT ["./docker"]
