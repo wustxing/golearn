@@ -1,6 +1,11 @@
 package test
+
 import "fmt"
 
-func SayHello(){
+func SayHello() {
 	fmt.Println("hello")
+}
+
+func Init() {
+	fmt.Println("test init")
 }
