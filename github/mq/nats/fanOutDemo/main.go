@@ -52,6 +52,11 @@ func (p *consumer) consume(tasksch <-chan *nats.Msg) {
 }
 
 func (p *consumer) saveTodb() {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
 	if len(p.msgs) <= 0 {
 		return
 	}
