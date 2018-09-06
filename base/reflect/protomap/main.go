@@ -1,72 +1,72 @@
 package main
 
 import (
-	"reflect"
-	"github.com/0990/golearn/reflect/protomap/msg"
-	"fmt"
-	"github.com/golang/protobuf/proto"
 	"errors"
-	"unsafe"
+	"fmt"
+	"github.com/0990/golearn/base/reflect/protomap/msg"
+	"github.com/golang/protobuf/proto"
+	"reflect"
 	"strconv"
+	"unsafe"
 )
 
-type MessageInfo struct{
-	msgType reflect.Type
+type MessageInfo struct {
+	msgType    reflect.Type
 	msgHandler MessageHandler
 }
 
-type MessageHandler func(msgid uint32,msg interface{})
-var(
+type MessageHandler func(msgid uint32, msg interface{})
+
+var (
 	msg_map = make(map[uint32]MessageInfo)
 )
 
-func MessageHandler_test(msgid uint32,msg interface{}){
-	p:=msg.(*hello.Hello)
-	fmt.Println(p.Name,p.Id)
+func MessageHandler_test(msgid uint32, msg interface{}) {
+	p := msg.(*hello.Hello)
+	fmt.Println(p.Name, p.Id)
 }
 
-func main(){
-	RegisterMessage(&hello.Hello{},MessageHandler_test)
+func main() {
+	RegisterMessage(&hello.Hello{}, MessageHandler_test)
 
-	hello:=&hello.Hello{
-		Name:"xujialong",
+	hello := &hello.Hello{
+		Name: "xujialong",
 	}
-	data,_:=proto.Marshal(hello)
+	data, _ := proto.Marshal(hello)
 
-	msgID:=GetHash(reflect.TypeOf(hello).String())
-	int36Str :=strconv.FormatUint(uint64(msgID),36)
-	dataHead:=[]byte(int36Str)
-	for i:=len(int36Str);i<7;i++{
-		dataHead = append([]byte{'0'},dataHead...)
+	msgID := GetHash(reflect.TypeOf(hello).String())
+	int36Str := strconv.FormatUint(uint64(msgID), 36)
+	dataHead := []byte(int36Str)
+	for i := len(int36Str); i < 7; i++ {
+		dataHead = append([]byte{'0'}, dataHead...)
 	}
-	fmt.Println(string(dataHead),"msgID:",msgID)
+	fmt.Println(string(dataHead), "msgID:", msgID)
 
-	sendData :=make([]byte,0)
-	sendData = append([]byte(dataHead),data...)
-	sendDataContent :=sendData[7:]
-	sendDataHead:=sendData[:7]
-	sendmsgid,_:=strconv.ParseUint(string(sendDataHead),36,32)
-	fmt.Println(len(sendData),":",len(data),",getDatalen:",len(sendDataContent),"sendDataHead",len(sendDataHead),"msgid",sendmsgid)
-	HandleRawData(uint32(sendmsgid),data)
+	sendData := make([]byte, 0)
+	sendData = append([]byte(dataHead), data...)
+	sendDataContent := sendData[7:]
+	sendDataHead := sendData[:7]
+	sendmsgid, _ := strconv.ParseUint(string(sendDataHead), 36, 32)
+	fmt.Println(len(sendData), ":", len(data), ",getDatalen:", len(sendDataContent), "sendDataHead", len(sendDataHead), "msgid", sendmsgid)
+	HandleRawData(uint32(sendmsgid), data)
 }
 
-
-func RegisterMessage(msg interface{},handler MessageHandler){
+func RegisterMessage(msg interface{}, handler MessageHandler) {
 	var info MessageInfo
 	info.msgType = reflect.TypeOf(msg.(proto.Message))
 	info.msgHandler = handler
-	msgid:=GetHash(info.msgType.String())
+	msgid := GetHash(info.msgType.String())
 	msg_map[msgid] = info
 }
 
-func HandleRawData(msgid uint32,data []byte)error{
-	if info,ok:=msg_map[msgid];ok{
-		msg:=reflect.New(info.msgType.Elem()).Interface()
-		err:=proto.Unmarshal(data,msg.(proto.Message))
-		if err!=nil{
+func HandleRawData(msgid uint32, data []byte) error {
+	if info, ok := msg_map[msgid]; ok {
+		msg := reflect.New(info.msgType.Elem()).Interface()
+		err := proto.Unmarshal(data, msg.(proto.Message))
+		if err != nil {
 			return err
 		}
-		info.msgHandler(msgid,msg)
+		info.msgHandler(msgid, msg)
 		return err
 	}
 	fmt.Println("not found msgid")
@@ -80,7 +80,7 @@ const (
 
 // GetHash returns a murmur32 hash for the data slice.
 func GetHash(str string) uint32 {
-	data :=[]byte(str)
+	data := []byte(str)
 	// Seed is set to 37, same as C# version of emitter
 	var h1 uint32 = 37
 
@@ -131,7 +131,3 @@ func GetHash(str string) uint32 {
 
 	return (h1 << 24) | (((h1 >> 8) << 16) & 0xFF0000) | (((h1 >> 16) << 8) & 0xFF00) | (h1 >> 24)
 }
-
-
-
-

@@ -22,7 +22,7 @@ import (
 	"github.com/spf13/cobra"
 	//	"github.com/spf13/viper"
 
-	"github.com/0990/golearn/stdin/cobra/cobra/imp"
+	"github.com/0990/golearn/base/stdin/cobra/cobra/imp"
 )
 
 var cfgFile string

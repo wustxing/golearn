@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/0990/golearn/stdin/cobra/cobra/cmd"
+import "github.com/0990/golearn/base/stdin/cobra/cobra/cmd"
 
 func main() {
 	cmd.Execute()
