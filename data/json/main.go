@@ -5,12 +5,24 @@ import (
 	"fmt"
 )
 
-func main(){
+type User struct {
+	ID   int32
+	Name string
+}
+
+func main() {
 	var data map[string]interface{}
-	mapD :=map[string]int{"apple":5,"lettuce":7}
-	str,_:=json.Marshal(mapD)
+	mapD := map[string]int{"apple": 5, "lettuce": 7}
+	str, _ := json.Marshal(mapD)
 	fmt.Println(str)
-	json.Unmarshal(str,&data)
+	json.Unmarshal(str, &data)
 	fmt.Print(data)
 
+	u := &User{
+		ID:   1,
+		Name: "hello",
+	}
+
+	str, _ = json.Marshal(u)
+	fmt.Println(string(str))
 }

@@ -82,7 +82,7 @@ func redisIncr(key string) (value string) {
 func main() {
 	initRedisPool()
 	redisSet("hello", "1")
-	value := redisGet("hello")
+	value := redisGet("hello1")
 
 	redisIncr("hello")
 	newValue := redisGet("hello")

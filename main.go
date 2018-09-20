@@ -4,13 +4,16 @@ import (
 	"fmt"
 	"math"
 	"strconv"
-	"strings"
 	"time"
 )
 
 func main() {
-	i, err := strconv.Atoi(strings.TrimSpace(""))
-	fmt.Println(i, err)
+	str := `恭喜玩家<font color="#0067FF">%s</font>获得<font color="#ff4500">%s</font>X%s`
+	msg := fmt.Sprintf(str, "xu", "jia", strconv.Itoa(10))
+	fmt.Println(msg)
+
+	x := int64(10000) / int64(344)
+	fmt.Println(x)
 }
 
 func GetWeekCountToday() int {
