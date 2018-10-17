@@ -2,18 +2,17 @@ package main
 
 import (
 	"fmt"
+	"github.com/0990/golearn/util"
 	"math"
-	"strconv"
 	"time"
 )
 
 func main() {
-	str := `恭喜玩家<font color="#0067FF">%s</font>获得<font color="#ff4500">%s</font>X%s`
-	msg := fmt.Sprintf(str, "xu", "jia", strconv.Itoa(10))
-	fmt.Println(msg)
-
-	x := int64(10000) / int64(344)
-	fmt.Println(x)
+	go func() {
+		fmt.Println(util.GetGID())
+	}()
+	fmt.Println(util.GetGID())
+	time.Sleep(time.Second)
 }
 
 func GetWeekCountToday() int {
