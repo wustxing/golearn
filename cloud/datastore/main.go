@@ -26,19 +26,22 @@ func main() {
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "enter handle\n")
 	ctx := appengine.NewContext(r)
-
+	fmt.Fprintf(w, "create ctx\n")
 	k := datastore.NewKey(ctx, "Entity", "stringID", 0, nil)
 
 	e := new(Entity)
 
 	if err := datastore.Get(ctx, k, e); err != nil {
+		fmt.Fprintf(w, "datastore get error:%v\n", err)
 		http.Error(w, err.Error(), 500)
 		return
 	}
 	old := e.Value
 	e.Value = r.URL.Path
 	if _, err := datastore.Put(ctx, k, e); err != nil {
+		fmt.Fprintf(w, "datastore put error:%v\n", err)
 		http.Error(w, err.Error(), 500)
 		return
 	}
