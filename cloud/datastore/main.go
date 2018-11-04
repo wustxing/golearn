@@ -1,8 +1,8 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"log"
 	"net/http"
@@ -27,7 +27,7 @@ func main() {
 
 func handle(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "enter handle\n")
-	ctx := appengine.NewContext(r)
+	ctx := context.Background()
 	fmt.Fprintf(w, "create ctx\n")
 	k := datastore.NewKey(ctx, "Entity", "stringID", 0, nil)
 
