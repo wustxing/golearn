@@ -3,47 +3,41 @@ package main
 import (
 	"fmt"
 	"github.com/gomodule/redigo/redis"
+	"log"
 	"time"
 )
 
-var (
-	// 定义常量
-	RedisClient *redis.Pool
-)
+/*redis库使用示例*/
+//windows redis下载地址： https://github.com/MicrosoftArchive/redis/releases
 
-const (
-	RedisAddress = "127.0.0.1:6379"
-	RedisDb      = 0
-)
-
-func initRedisPool() {
-	RedisClient = &redis.Pool{
+func main() {
+	//创建一个redispool池
+	rp := &redis.Pool{
 		MaxIdle:     1,
 		MaxActive:   10,
 		IdleTimeout: 180 * time.Second,
 		Dial: func() (redis.Conn, error) {
-			c, err := redis.Dial("tcp", RedisAddress)
+			c, err := redis.Dial("tcp", "127.0.0.1:6379")
 			if err != nil {
 				return nil, err
 			}
-			c.Do("SELECT", RedisDb)
 			return c, nil
 		},
 	}
-}
 
-func main() {
-	initRedisPool()
-	conn := RedisClient.Get()
+	//从中取出一个连接
+	conn := rp.Get()
 	defer conn.Close()
-	vs, err := redis.Int(conn.Do("HGET", "area_0:invite:userid2count", 1000000001))
+
+	//创建key为"name"值为"0990"的键值对
+	_, err := conn.Do("SET", "name", "0990")
 	if err != nil {
-		if err == redis.ErrNil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println(err)
-		return
+		log.Fatal(err)
 	}
-	fmt.Println(vs)
+	//取出key为"name"的值并打印
+	val, err := redis.String(conn.Do("GET", "name"))
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(val)
 }
