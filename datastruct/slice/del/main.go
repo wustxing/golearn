@@ -16,5 +16,5 @@ func main() {
 			i++
 		}
 	}
-	fmt.Printf("after del:%+v", ageList)
+	fmt.Printf("after del:%v", ageList)
 }

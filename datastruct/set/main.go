@@ -3,38 +3,33 @@ package main
 import (
 	"fmt"
 	"gopkg.in/fatih/set.v0"
-	"sort"
 )
 
+/*set并集 交集 差集计算示例*/
+
 func main() {
-	s1 := set.New()
-	s1.Add(1)
-	s1.Add(2)
-	s1.Add(2)
-	s1.Add(5)
-	s1.Add(4)
+	a := set.New()
+	a.Add(1)
+	a.Add(2)
+	a.Add(3)
 
-	s2 := set.New()
-	s2.Add(2)
-	s2.Add(3)
+	b := set.New()
+	b.Add(2)
+	b.Add(3)
+	b.Add(4)
 
-	diffs1 := set.Difference(s1, s2)
-	s3 := set.Union(s1, s2)
-	//diffs2 := set.Difference(s2, s1)
-	//fmt.Println(s1, s2, diffs1, diffs2)
-	//sort.Sort(diffs1.List())
-	list := diffs1.List()
-	var intlist []int
-	for _, v := range list {
-		intlist = append(intlist, v.(int))
-	}
-	sort.Slice(intlist, func(i, j int) bool {
-		return intlist[i] < intlist[j]
-	})
-	fmt.Println(diffs1, intlist, s3)
-	//fmt.Println(s3)
-	//for _, v := range s1.List() {
-	//	intValue := v.(int)
-	//	fmt.Println(intValue)
-	//}
+	//并集
+	unionSet := set.Union(a, b)
+	fmt.Printf("unionSet:%v\n", unionSet)
+
+	//交集
+	intersectionSet := set.Intersection(a, b)
+	fmt.Printf("intersectionSet:%v\n", intersectionSet)
+
+	//差集
+	diffS1S2 := set.Difference(a, b)
+	fmt.Printf("diffSet(属a不属b):%v\n", diffS1S2)
+
+	diffS2S1 := set.Difference(b, a)
+	fmt.Printf("diffSet(属b不属a):%v\n", diffS2S1)
 }
