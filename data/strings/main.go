@@ -26,6 +26,8 @@ func main() {
 	fmt.Println(strings.Join(fieldstring, ",,"))
 
 	fmt.Println(ParseProp("2, 1 ;5 ,4 "))
+
+	strings.Trim("hello", "ho")
 }
 
 func ToInt32(s string) (int32, error) {

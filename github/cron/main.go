@@ -6,6 +6,7 @@ import (
 	"github.com/robfig/cron"
 	"time"
 )
+
 //每隔5秒执行一次：*/5 * * * * ?
 //每隔1分钟执行一次：0 */1 * * * ?
 //每天23点执行一次：0 0 23 * * ?
@@ -20,10 +21,10 @@ func main() {
 	spec1 := "5 06 19 * * ?"
 	c := cron.New()
 	c.AddFunc(spec, callYourFunc)
-	c.AddFunc(spec1,callYourFunc)
+	c.AddFunc(spec1, callYourFunc)
 	c.Start()
-	for _,v:=range c.Entries(){
-		fmt.Println(v.Next.Unix()-time.Now().Unix())
+	for _, v := range c.Entries() {
+		fmt.Println(v.Next.Unix() - time.Now().Unix())
 	}
 
 	fmt.Println("start")

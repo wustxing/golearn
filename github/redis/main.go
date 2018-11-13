@@ -32,59 +32,18 @@ func initRedisPool() {
 	}
 }
 
-func redisSet(key string, value string) {
-	c, err := RedisClient.Dial()
-	if err != nil {
-		fmt.Println("Connect to redis error", err)
-		return
-	}
-
-	_, err = c.Do("SET", key, value)
-	if err != nil {
-		fmt.Println("redis set failed:", err)
-	}
-}
-
-func redisGet(key string) (value string) {
-	c, err := RedisClient.Dial()
-	if err != nil {
-		fmt.Println("Connect to redis error", err)
-		return
-	}
-
-	val, err := redis.String(c.Do("GET", key))
-
-	if err != nil {
-		fmt.Println("redis get failed:", err)
-		return ""
-	} else {
-		fmt.Printf("Got value is %v\n", val)
-		return val
-	}
-}
-
-func redisIncr(key string) (value string) {
-	c, err := RedisClient.Dial()
-	_, err = c.Do("INCR", key)
-
-	if err != nil {
-		fmt.Println("incr error", err.Error())
-	}
-
-	incr, err := redis.String(c.Do("GET", key))
-
-	if err != nil {
-		fmt.Println("redis key after incr is:", incr)
-	}
-	return incr
-}
-
 func main() {
 	initRedisPool()
-	redisSet("hello", "1")
-	value := redisGet("hello1")
-
-	redisIncr("hello")
-	newValue := redisGet("hello")
-	fmt.Println(value, newValue)
+	conn := RedisClient.Get()
+	defer conn.Close()
+	vs, err := redis.Int(conn.Do("HGET", "area_0:invite:userid2count", 1000000001))
+	if err != nil {
+		if err == redis.ErrNil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(vs)
 }
