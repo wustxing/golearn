@@ -1,26 +1,19 @@
 package main
 
-import (
-	"fmt"
-	"github.com/0990/golearn/util"
-)
+import "fmt"
 
 type PropPack struct {
-	PropID int32
-	Num    int32
+	maps map[int32]int
 }
 
 func main() {
+	p := PropPack{}
+	p.maps = make(map[int32]int)
+	a := 1
+	p.maps[1] = a
 
-	fmt.Println(util.GetRandomString(6))
-}
-
-func PropToString(propList []PropPack) (s string) {
-	for i, v := range propList {
-		s += fmt.Sprintf("%d,%d", v.PropID, v.Num)
-		if i < len(propList) {
-			s += ";"
-		}
-	}
-	return
+	b := 2
+	s := p
+	s.maps[1] = b
+	fmt.Println(p, s, p.maps[1])
 }
