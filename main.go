@@ -1,19 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-type PropPack struct {
-	maps map[int32]int
+type Config struct {
+	name string
 }
 
-func main() {
-	p := PropPack{}
-	p.maps = make(map[int32]int)
-	a := 1
-	p.maps[1] = a
+var c *Config
 
-	b := 2
-	s := p
-	s.maps[1] = b
-	fmt.Println(p, s, p.maps[1])
+func main() {
+	a := 1
+	m := 2
+
+	b := &a
+	c := b
+	fmt.Println(b, c)
+	b = &m
+	fmt.Println(a, b, c)
 }
