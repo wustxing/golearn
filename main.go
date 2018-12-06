@@ -1,13 +1,16 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+type User struct {
+	age int
+}
+
+type Users []*User
+
+func (users Users) SayHello() []*User {
+	return users
+}
 
 func main() {
-	for {
-		fmt.Println(time.Now())
-		time.Sleep(time.Second)
-	}
+	users := []*User{}
+	Users(users).SayHello()
 }
