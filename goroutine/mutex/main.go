@@ -6,6 +6,7 @@ import (
 )
 
 var m *sync.RWMutex
+var x sync.Mutex
 
 var global_int int
 

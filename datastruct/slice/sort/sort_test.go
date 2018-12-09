@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 	"testing"
 )
 
@@ -17,6 +18,8 @@ func Test_Sort(t *testing.T) {
 			Age: 2,
 		},
 	}
-	persons[1], persons[2] = persons[2], persons[1]
+	sort.Slice(persons, func(i, j int) bool {
+		return persons[i].Age > persons[j].Age
+	})
 	fmt.Printf("after sort:%v", persons)
 }

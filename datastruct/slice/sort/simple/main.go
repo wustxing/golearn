@@ -1,4 +1,4 @@
-package simple
+package main
 
 import (
 	"fmt"
@@ -6,12 +6,11 @@ import (
 )
 
 /*slice 简单排序示例*/
-
 func main() {
 	//定义一个年龄列表
 	ageList := []int{1, 3, 7, 7, 8, 2, 5}
 
-	//排序
+	//排序，实现比较方法即可
 	sort.Slice(ageList, func(i, j int) bool {
 		return ageList[i] < ageList[j]
 	})

@@ -1,26 +1,39 @@
 package main
 
-import (
-	"fmt"
-	"github.com/0990/golearn/util"
-)
+import "fmt"
 
-type PropPack struct {
-	PropID int32
-	Num    int32
+type Helloer interface {
+	SayHello()
+}
+
+type Hier interface {
+	SayHi()
+}
+
+type Student struct {
+}
+
+func (s *Student) SayHello() {
+	fmt.Println("hello")
+}
+
+func (s *Student) SayHi() {
+	fmt.Println("hi")
+}
+
+func (s *Student) Name() string {
+	return "xujialong"
 }
 
 func main() {
+	s := new(Student)
+	FromHelloToHi(s)
 
-	fmt.Println(util.GetRandomString(6))
 }
 
-func PropToString(propList []PropPack) (s string) {
-	for i, v := range propList {
-		s += fmt.Sprintf("%d,%d", v.PropID, v.Num)
-		if i < len(propList) {
-			s += ";"
-		}
-	}
-	return
+func FromHelloToHi(h Helloer) {
+	n := h.(interface {
+		Name() string
+	}).Name()
+	fmt.Println(n)
 }

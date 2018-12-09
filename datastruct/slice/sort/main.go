@@ -30,5 +30,5 @@ func main() {
 		},
 	}
 	sort.Sort(persons)
-	fmt.Printf("after sort:%v", persons)
+	fmt.Printf("after sort:%+v", persons)
 }
