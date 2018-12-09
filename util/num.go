@@ -19,3 +19,7 @@ func ToFloat64(s string) (float64, error) {
 	v, err := strconv.ParseFloat(s, 64)
 	return v, err
 }
+
+func Last2Num(num int32) int32 {
+	return num - 100*(num/100)
+}
