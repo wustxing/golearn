@@ -2,14 +2,43 @@ package util
 
 import (
 	"math/rand"
+	"sync"
 	"time"
 )
 
-var myRand = rand.New(rand.NewSource(time.Now().UnixNano()))
+//var myRand = rand.New(rand.NewSource(time.Now().UnixNano()))
+
+//var globalRand = New(&LockedSource{src: NewSource(1).(Source64)})
+var myRand = rand.New(&LockdSource{src: rand.NewSource(time.Now().UnixNano()).(rand.Source64)})
+
+type LockdSource struct {
+	lk  sync.Mutex
+	src rand.Source64
+}
+
+func (r *LockdSource) Int63() (n int64) {
+	r.lk.Lock()
+	n = r.src.Int63()
+	r.lk.Unlock()
+	return
+}
+
+func (r *LockdSource) Seed(seed int64) {
+	r.lk.Lock()
+	r.src.Seed(seed)
+	r.lk.Unlock()
+}
 
 // RandNum ...
 func RandNum(num int32) int32 {
 	return myRand.Int31n(num)
+}
+
+func Rand31() int32 {
+	return myRand.Int31()
+}
+func Rand63() int64 {
+	return myRand.Int63()
 }
 
 //生成不重复的随机数，随机数范围0~max,数量num

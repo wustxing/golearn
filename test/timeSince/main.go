@@ -8,7 +8,7 @@ import (
 func main() {
 	t1 := time.Now()
 
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 100; i++ {
 		fmt.Println("fsdf")
 	}
 

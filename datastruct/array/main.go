@@ -4,10 +4,10 @@ import "fmt"
 
 //数组在函数中传递是值传递
 func main() {
-	arr := [3]int{1, 2, 3}
-	fmt.Println(arr)
-	changeValue(arr)
-	fmt.Println(arr)
+	//arr := [3]int{1, 2, 3}
+	//fmt.Println(arr)
+	//changeValue(arr)
+	//fmt.Println(arr)
 	testArr()
 	testSlice()
 }
@@ -38,6 +38,6 @@ func testSlice() {
 			arr[1] += 10
 			arr[2] += 10
 		}
-		fmt.Println(v, arr[i])
+		fmt.Println(v, arr[i], &v, &arr[i])
 	}
 }
