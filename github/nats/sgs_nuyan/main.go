@@ -6,9 +6,13 @@ import (
 	"time"
 )
 
+//var natsUrl = "nats://localhost:4222"
+
+var natsUrl = "nats://47.99.219.57:4222"
+
 func main() {
 	conn, err := nats.Connect(
-		nats.DefaultURL,
+		natsUrl,
 		nats.MaxReconnects(-1),
 		nats.ReconnectWait(2*time.Second),
 	)
@@ -18,6 +22,10 @@ func main() {
 	}
 
 	conn.Subscribe("report", func(msg *nats.Msg) {
+		fmt.Println(string(msg.Data))
+	})
+
+	conn.Subscribe("loadbalance", func(msg *nats.Msg) {
 		fmt.Println(string(msg.Data))
 	})
 

@@ -1,10 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/0990/golearn/util"
+)
 
 func main() {
-	intArr := make([]int, 0, 10)
-	intArr = append(intArr, 10)
-	fmt.Println(intArr)
-
+	path := "hello.txt"
+	fmt.Println(util.Md5File(path))
+	fmt.Println(util.Md5Files(path))
 }
