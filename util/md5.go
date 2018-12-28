@@ -58,7 +58,7 @@ func MD5FileSync(files ...string) (string, error) {
 	return fmt.Sprintf("%x", md5.Sum(allData)), nil
 }
 
-func Md5FileAsync(files ...string) (string, error) {
+func MD5FileAsync(files ...string) (string, error) {
 	length := len(files)
 	if length == 0 {
 		return "", errors.New("no file")
