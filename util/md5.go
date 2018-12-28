@@ -32,7 +32,33 @@ func MD5(s string) string {
 	return ret
 }
 
-func Md5Files(files ...string) (string, error) {
+func MD5FileSync(files ...string) (string, error) {
+	length := len(files)
+	if length == 0 {
+		return "", errors.New("no file")
+	}
+
+	md5Map := make(map[string][]byte)
+	var paths []string
+	for _, v := range files {
+		file := v
+		data, err := ioutil.ReadFile(file)
+		if err != nil {
+			return "", err
+		}
+		md5Map[file] = data
+		paths = append(paths, file)
+	}
+
+	sort.Strings(paths)
+	var allData []byte
+	for _, v := range paths {
+		allData = append(allData, md5Map[v]...)
+	}
+	return fmt.Sprintf("%x", md5.Sum(allData)), nil
+}
+
+func Md5FileAsync(files ...string) (string, error) {
 	length := len(files)
 	if length == 0 {
 		return "", errors.New("no file")
