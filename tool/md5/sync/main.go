@@ -20,7 +20,7 @@ func main() {
 		duration := time.Since(now)
 		fmt.Println(duration)
 	}()
-	md5, err := util.MD5FileSync(fs...)
+	md5, err := util.MD5FileSync1(fs...)
 	if err != nil {
 		fmt.Println("error:", err.Error())
 		return

@@ -8,14 +8,13 @@ import (
 )
 
 var (
-	files = flag.String("f", "hello.1txt", "md5 file")
+	files = flag.String("f", "hello.txt", "md5 file")
 )
 
 func main() {
 	flag.Parse()
 	fs := strings.Split(*files, ",")
-
-	md5, err := util.MD5FileAsync(fs...)
+	md5, err := util.MD5FileAsyncFast(fs...)
 	if err != nil {
 		fmt.Println("error:", err.Error())
 		return
