@@ -11,4 +11,5 @@ type User struct {
 
 func main() {
 	fmt.Println(reflect.TypeOf((*User)(nil)).Elem())
+	fmt.Println("hello")
 }
