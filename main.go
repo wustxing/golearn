@@ -1,10 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
+
+type User struct {
+	Age int32
+}
 
 func main() {
-	intArr := [2]int{1, 2}
-	intSlice := intArr[:]
-	fmt.Printf("%T,%v", intArr, intArr)
-	fmt.Printf("%T,%v", intSlice, intSlice)
+	fmt.Println(reflect.TypeOf((*User)(nil)).Elem())
 }
