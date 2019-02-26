@@ -6,9 +6,9 @@ import (
 	"time"
 )
 
-//var natsUrl = "nats://localhost:4222"
+var natsUrl = "nats://localhost:4222"
 
-var natsUrl = "nats://47.99.219.57:4222"
+//var natsUrl = "nats://47.99.219.57:4222"
 
 func main() {
 	conn, err := nats.Connect(

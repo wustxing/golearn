@@ -2,14 +2,12 @@ package main
 
 import (
 	"fmt"
-	"reflect"
+	"time"
 )
 
-type User struct {
-	Age int32
-}
-
 func main() {
-	fmt.Println(reflect.TypeOf((*User)(nil)).Elem())
-	fmt.Println("hellodev")
+	for {
+		fmt.Println("output test")
+		time.Sleep(time.Second * 2)
+	}
 }

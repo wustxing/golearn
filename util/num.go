@@ -23,3 +23,10 @@ func ToFloat64(s string) (float64, error) {
 func Last2Num(num int32) int32 {
 	return num - 100*(num/100)
 }
+
+func Min(v1, v2 int32) int32 {
+	if v1 < v2 {
+		return v1
+	}
+	return v2
+}
