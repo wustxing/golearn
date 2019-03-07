@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gomodule/redigo/redis"
-	"log"
+	"github.com/sirupsen/logrus"
 	"time"
 )
 
@@ -29,15 +29,29 @@ func main() {
 	conn := rp.Get()
 	defer conn.Close()
 
-	//创建key为"name"值为"0990"的键值对
-	_, err := conn.Do("SET", "name", "0990")
+	////创建key为"name"值为"0990"的键值对
+	//_, err := conn.Do("SET", "name", "0990")
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	////取出key为"name"的值并打印
+	//val, err := redis.String(conn.Do("GET", "name"))
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//fmt.Println(val)
+
+	vs, err := redis.Values(conn.Do("ZREVRANGE", "area_194:rank:level", 0, 100, "WITHSCORES"))
 	if err != nil {
-		log.Fatal(err)
+		logrus.Debug(vs)
 	}
-	//取出key为"name"的值并打印
-	val, err := redis.String(conn.Do("GET", "name"))
+	ivs := make([]string, len(vs))
+	err = redis.ScanSlice(vs, &ivs)
 	if err != nil {
-		log.Fatal(err)
+		logrus.Debug(err)
 	}
-	fmt.Println(val)
+	fmt.Println(ivs)
+
+	ret, err := redis.Strings(conn.Do("ZREVRANGE", "area_194:rank:level", 0, 100))
+	fmt.Println(ret)
 }
