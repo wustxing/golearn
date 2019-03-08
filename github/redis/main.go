@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gomodule/redigo/redis"
-	"github.com/sirupsen/logrus"
 	"time"
 )
 
@@ -41,17 +39,19 @@ func main() {
 	//}
 	//fmt.Println(val)
 
-	vs, err := redis.Values(conn.Do("ZREVRANGE", "area_194:rank:level", 0, 100, "WITHSCORES"))
-	if err != nil {
-		logrus.Debug(vs)
-	}
-	ivs := make([]string, len(vs))
-	err = redis.ScanSlice(vs, &ivs)
-	if err != nil {
-		logrus.Debug(err)
-	}
-	fmt.Println(ivs)
+	//vs, err := redis.Values(conn.Do("ZREVRANGE", "area_194:rank:level", 0, 100, "WITHSCORES"))
+	//if err != nil {
+	//	logrus.Debug(vs)
+	//}
+	//ivs := make([]string, len(vs))
+	//err = redis.ScanSlice(vs, &ivs)
+	//if err != nil {
+	//	logrus.Debug(err)
+	//}
+	//fmt.Println(ivs)
+	//
+	//ret, err := redis.Strings(conn.Do("ZREVRANGE", "area_194:rank:level", 0, 100))
+	//fmt.Println(ret)
 
-	ret, err := redis.Strings(conn.Do("ZREVRANGE", "area_194:rank:level", 0, 100))
-	fmt.Println(ret)
+	conn.Do("HMSET", "xujialong", "key1", "value1", "key2", "value2")
 }
