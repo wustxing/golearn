@@ -26,7 +26,7 @@ func main() {
 	})
 
 	conn.Subscribe("loadbalance", func(msg *nats.Msg) {
-		fmt.Println(string(msg.Data))
+		fmt.Println(time.Now(), string(msg.Data))
 	})
 
 	time.Sleep(24 * time.Hour)

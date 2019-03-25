@@ -2,6 +2,7 @@ package util
 
 import (
 	"math/rand"
+	"sanguosha.com/games/sgs/framework/util"
 	"sync"
 	"time"
 )
@@ -67,4 +68,14 @@ func GenDiffRandomNum(num, max int) (outIntArr []int) {
 		tmpArr[rnd] = -1
 	}
 	return
+}
+
+func RandomIndex(len int) []int {
+	pollorder := make([]int, len)
+	for i := 0; i < len; i++ {
+		j := util.RandIntn(i + 1)
+		pollorder[i] = pollorder[j]
+		pollorder[j] = i
+	}
+	return pollorder
 }
