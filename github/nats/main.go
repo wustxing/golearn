@@ -26,6 +26,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	conn.Pub
 
 	//funSub(conn)
 	//printStats(conn)

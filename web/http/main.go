@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	fmt.Println("listen 8888 start...")
+	fmt.Println("listen 9999 start...")
 	http.HandleFunc("/", ServerHandler)
-	err := http.ListenAndServe(":8888", nil)
+	err := http.ListenAndServe(":9999", nil)
 
 	if err != nil {
 		log.Fatal(err)
@@ -17,11 +17,8 @@ func main() {
 }
 
 func ServerHandler(w http.ResponseWriter, r *http.Request) {
+	v := r.FormValue("order")
+	fmt.Println(v)
 	fmt.Println("request url:", r.Host)
-	if r.Host == "127.0.0.1:8888" {
-		fmt.Println("host is right")
-	} else {
-		fmt.Println("host is not right")
-	}
 	fmt.Fprintln(w, "hello world")
 }

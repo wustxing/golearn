@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/gomodule/redigo/redis"
-	"github.com/sirupsen/logrus"
+	"sanguosha.com/sgs_nuyan/gameutil"
+	"sanguosha.com/sgs_nuyan/proto/db"
+	"strconv"
 	"time"
 )
 
@@ -46,6 +48,19 @@ const (
         local retData = redis.call("ZREVRANGE",KEYS[2],0,ARGV[2]-1,"WITHSCORES")
 		return retData
 	`
+	ScriptGetQualifyRankInfo = `
+        local rankData = redis.call("ZREVRANGE",KEYS[1],0,ARGV[1]-1,"WITHSCORES")
+		if rankData then
+			local rank = redis.call("ZREVRANK",KEYS[1],ARGV[2])
+			if rank then
+				local rankInt = tonumber(rank)
+				local myRankData = redis.call("ZREVRANGE",KEYS[1],math.max(rankInt-1,0),rankInt+1,"WITHSCORES")
+				return {rankData,rank,myRankData}
+			end
+			return {rankData,0,0}
+		end
+		return rankData
+	`
 )
 
 func main() {
@@ -67,13 +82,13 @@ func main() {
 	conn := rp.Get()
 	defer conn.Close()
 
-	script := redis.NewScript(2, rankCopyScript)
-	ret, err := redis.Strings(script.Do(conn, "hello", "helloCopy", 10000, 100))
-	if err != nil {
-		logrus.WithError(err).Error("Make Rank error")
-		return
-	}
-	fmt.Print(ret)
+	//script := redis.NewScript(2, rankCopyScript)
+	//ret, err := redis.Strings(script.Do(conn, "hello", "helloCopy", 10000, 100))
+	//if err != nil {
+	//	logrus.WithError(err).Error("Make Rank error")
+	//	return
+	//}
+	//fmt.Print(ret)
 
 	//reply, err := conn.Do("ZREVRANGE", "rank", 0, 10000, "WITHSCORES")
 	//if err != nil {
@@ -130,4 +145,56 @@ func main() {
 	//	fmt.Println("not existed")
 	//}
 	//fmt.Println(rank, err)
+	userID := uint64(30000041030)
+	recordAll, myRank, recordMy, err := GetQualifyRankInfo(conn, userID)
+	fmt.Println(recordAll)
+	fmt.Println(myRank)
+	fmt.Println(recordMy)
+	fmt.Println(err)
+}
+
+func GetQualifyRankInfo(conn redis.Conn, userID uint64) (*db.RankRecord, int32, *db.RankRecord, error) {
+	rankRecordMy := &db.RankRecord{}
+
+	script := redis.NewScript(1, ScriptGetQualifyRankInfo)
+	rawReply, err := redis.Values(script.Do(conn, "area_194:qualify_19031501:rank", 100, gameutil.UserKey(userID)))
+	if err != nil {
+		return nil, 0, rankRecordMy, err
+	}
+
+	ivs, err := redis.Strings(rawReply[0], err)
+	if err != nil {
+		return nil, 0, rankRecordMy, err
+	}
+
+	rankRecord := &db.RankRecord{}
+	for i := 0; i < len(ivs); i += 2 {
+		info := &db.RankRecord_Item{}
+		info.Userid, err = strconv.ParseUint(ivs[i], 10, 64)
+		info.Score, err = strconv.ParseInt(ivs[i+1], 10, 64)
+		rankRecord.List = append(rankRecord.List, info)
+	}
+
+	myRank, myRankErr := redis.Int64(rawReply[1], err)
+	if myRankErr != nil {
+		return rankRecord, 0, rankRecordMy, myRankErr
+	}
+
+	if myRank > 0 {
+		ivs, err = redis.Strings(rawReply[2], err)
+		if err != nil {
+			return rankRecord, int32(myRank + 1), rankRecordMy, err
+		}
+
+		for i := 0; i < len(ivs); i += 2 {
+			info := &db.RankRecord_Item{}
+			info.Userid, err = strconv.ParseUint(ivs[i], 10, 64)
+			info.Score, err = strconv.ParseInt(ivs[i+1], 10, 64)
+			rankRecordMy.List = append(rankRecordMy.List, info)
+		}
+		return rankRecord, int32(myRank + 1), rankRecordMy, err
+	} else {
+		return rankRecord, 0, rankRecordMy, err
+	}
+
 }

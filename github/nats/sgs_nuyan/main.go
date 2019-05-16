@@ -6,7 +6,8 @@ import (
 	"time"
 )
 
-var natsUrl = "nats://localhost:4222"
+//var natsUrl = "nats://localhost:4222"
+var natsUrl = "nats://101.37.175.56:4222"
 
 //var natsUrl = "nats://47.99.219.57:4222"
 
