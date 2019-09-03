@@ -83,7 +83,13 @@ func (p *RPCClient) Request(serverTopic string, message proto.Message, onRecv fu
 //仅发送
 func (p *RPCClient) SendMsg(serverTopic string, msg proto.Message) {
 	data := netmsg.Marshal(msg, 0)
-	p.conn.Publish(serverTopic, data)
+	p.send(serverTopic, data)
+}
+
+//rpc回报，要带上seqid
+func (p *RPCClient) Answer(seqid uint16, msg proto.Message) {
+	data := netmsg.Marshal(msg, seqid)
+	p.send(serverTopic, data)
 }
 
 func (p *RPCClient) Run() {

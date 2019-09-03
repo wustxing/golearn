@@ -3,14 +3,15 @@ package main
 import (
 	"log"
 	"net"
+	"time"
 )
 
-func main(){
-	log.Println("begin dial..")
-	conn,err:=net.Dial("tcp",":8888")
-	if err!=nil{
-		log.Println("dial error",err)
+func main() {
+	conn, err := net.Dial("tcp", ":9999")
+	if err != nil {
+		log.Println("dial error", err)
 	}
 	defer conn.Close()
-	log.Println("dial ok")
+	conn.Write([]byte("I am socket client"))
+	time.Sleep(time.Second)
 }
