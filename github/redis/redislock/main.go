@@ -25,11 +25,24 @@ func main() {
 	}
 
 	conn := redisPool.Get()
+	fmt.Println("lock start")
 	lock, err := TryLock(conn, "xujialong")
 	if err != nil {
 		log.Fatal("error while attempting lock")
 	}
-	defer lock.Unlock()
+
+	go func() {
+		fmt.Println("go fun lock start")
+		lock1, err := TryLock(conn, "xujialong")
+		if err != nil {
+			fmt.Println(err)
+		}
+		defer lock1.Unlock()
+		fmt.Println("go fun lock end")
+	}()
+	time.Sleep(time.Second * 5)
+	fmt.Println("lock end")
+	lock.Unlock()
 	fmt.Println("a getlock")
 	time.Sleep(20 * time.Second)
 }
