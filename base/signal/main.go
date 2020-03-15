@@ -19,6 +19,7 @@ func main() {
 			}
 		}
 	}()
+	//time.Sleep(time.Second*10)
 	s := <-c
 	fmt.Println("Got signal:", s)
 }
