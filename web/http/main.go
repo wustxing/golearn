@@ -21,4 +21,7 @@ func ServerHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(v)
 	fmt.Println("request url:", r.Host)
 	fmt.Fprintln(w, "hello world")
+	fmt.Println(r.URL.Path[1:])
+	fmt.Println(r.URL.Path)
+	fmt.Println(r.RemoteAddr)
 }
