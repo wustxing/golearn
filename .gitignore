@@ -14,3 +14,7 @@
 .glide/
 
 .idea/
+
+*.log
+*.png
+*.txt

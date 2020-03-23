@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 )
@@ -17,11 +18,11 @@ func main() {
 }
 
 func ServerHandler(w http.ResponseWriter, r *http.Request) {
-	v := r.FormValue("order")
-	fmt.Println(v)
-	fmt.Println("request url:", r.Host)
-	fmt.Fprintln(w, "hello world")
-	fmt.Println(r.URL.Path[1:])
-	fmt.Println(r.URL.Path)
-	fmt.Println(r.RemoteAddr)
+	fmt.Println("method:", r.Method)
+
+	data, err := ioutil.ReadAll(r.Body)
+	if err == nil {
+		fmt.Println("body:", string(data))
+	}
+
 }
