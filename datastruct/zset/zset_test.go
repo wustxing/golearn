@@ -9,29 +9,10 @@ import (
 func TestZSet(t *testing.T) {
 	z := New()
 
-	z.AddBatch(Element{
-		Member: "a",
-		Score:  100,
-		Extra:  "aa",
-	})
-
-	z.AddBatch(Element{
-		Member: "b",
-		Score:  50,
-		Extra:  "bb",
-	})
-
-	z.AddBatch(Element{
-		Member: "c",
-		Score:  200,
-		Extra:  "cc",
-	})
-
-	z.AddBatch(Element{
-		Member: "d",
-		Score:  400,
-		Extra:  "dd",
-	})
+	z.Add("a", 100)
+	z.Add("b", 50)
+	z.Add("c", 200)
+	z.Add("d", 400)
 
 	ret := z.Range(1, -2, false)
 	data, err := json.Marshal(ret)
@@ -50,39 +31,30 @@ func TestZSet(t *testing.T) {
 		t.Fail()
 	}
 
-	z.AddBatch(Element{
-		Member: "c",
-		Score:  900,
-		Extra:  "cc",
-	})
+	z.Add("c", 900)
 
 	if z.Rank("c", false) != 3 {
 		t.Fail()
 	}
-
-	fmt.Println(z.V("c"))
-
-	fmt.Println(z.Length())
 
 	z.Incr("c", -20)
 	score, _ = z.Score("c")
 	if score != 880 {
 		t.Fail()
 	}
-
 }
 
 func Benchmark_ZSetAdd(b *testing.B) {
 	z := New()
 	for i := 0; i < b.N; i++ {
-		z.Add(fmt.Sprintf("%d", i), i, "9999")
+		z.Add(fmt.Sprintf("%d", i), int64(i))
 	}
 }
 
 func Benchmark_ZSetRank(b *testing.B) {
 	z := New()
 	for i := 0; i < 100000; i++ {
-		z.Add(fmt.Sprintf("%d", i), i, "9999")
+		z.Add(fmt.Sprintf("%d", i), int64(i))
 	}
 	for i := 0; i < b.N; i++ {
 		z.Rank("10000", false)
@@ -92,10 +64,10 @@ func Benchmark_ZSetRank(b *testing.B) {
 func TestZSet_Rank(t *testing.T) {
 	z := New()
 	for i := 0; i < 100000; i++ {
-		z.Add(fmt.Sprintf("%d", i), i, "9999")
+		z.Add(fmt.Sprintf("%d", i), int64(i))
 	}
 	for i := 200000; i > 0; i-- {
-		z.Add(fmt.Sprintf("%d", i), i, "9999")
+		z.Add(fmt.Sprintf("%d", i), int64(i))
 	}
 
 	fmt.Println(z.Rank("200000", true))
