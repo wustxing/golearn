@@ -17,11 +17,11 @@ import (
 func main() {
 	time.Now().Unix()
 
-	spec := "*/60 * * * * ?"
+	spec := "*/1 * * * * ?"
 	spec1 := "5 06 19 * * ?"
 	c := cron.New()
 	c.AddFunc(spec, callYourFunc)
-	c.AddFunc(spec1, callYourFunc)
+	c.AddFunc(spec1, specFunc)
 	c.Start()
 	for _, v := range c.Entries() {
 		fmt.Println(v.Next.Unix() - time.Now().Unix())
@@ -33,5 +33,9 @@ func main() {
 }
 
 func callYourFunc() {
-	fmt.Println("callYourFunc come")
+	fmt.Println(time.Now())
+}
+
+func specFunc() {
+	fmt.Println("specFunc come")
 }

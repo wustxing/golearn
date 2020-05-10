@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/AsynkronIT/protoactor-go/log"
+	"log"
 	"net"
+	"time"
 )
 
 func main() {
@@ -25,13 +26,15 @@ func main() {
 }
 
 func HandleConn(conn net.Conn) {
-	defer conn.Close()
+	time.Sleep(time.Second * 10)
+	conn.Close()
+	//defer conn.Close()
 	buffer := make([]byte, 100)
 	for {
 		//read
 		n, err := conn.Read(buffer)
 		if err != nil {
-			log.Error(err)
+			log.Println(err)
 			return
 		}
 		fmt.Println("receive data:", string(buffer[:n]))
