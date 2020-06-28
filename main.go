@@ -2,17 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/robfig/cron"
-	_ "net/http/pprof"
-	"time"
+	"strings"
 )
 
 func main() {
-	spec := "00 11 18 * * ?"
-	c := cron.New()
-	c.AddFunc(spec, func() {
-		fmt.Println("call func:", time.Now())
-	})
-	c.Start()
-	time.Sleep(time.Hour)
+	str := "abcde_145_190"
+	index := strings.LastIndex(str, "_")
+	if index > 0 {
+		fmt.Println(str[index+1:])
+	}
+
+	fmt.Println(strings.ReplaceAll("abc_%d_cde_%d", "%d", "*"))
 }

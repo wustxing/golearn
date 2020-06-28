@@ -25,6 +25,9 @@ func (c *Client) listen() {
 		if err != nil {
 			c.conn.Close()
 			c.Server.onClientConnectionClosed(c, err)
+			if opErr, ok := err.(*net.OpError); ok {
+				fmt.Println(opErr)
+			}
 			return
 		}
 		c.Server.onNewMessage(c, message)

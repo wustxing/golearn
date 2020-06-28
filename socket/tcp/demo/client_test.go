@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/0990/golearn/socket/tcp/demo/client"
 	"testing"
-	"time"
 )
 
 func Test_Client(t *testing.T) {
@@ -27,5 +26,4 @@ func Test_Client(t *testing.T) {
 		t.Error(err)
 	}
 	t.Log(resp)
-	time.Sleep(time.Second * 2)
 }
