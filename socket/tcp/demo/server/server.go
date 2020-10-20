@@ -73,7 +73,7 @@ func (s *server) Listen() {
 
 	for {
 		conn, _ := listener.Accept()
-		fmt.Println("accept new connect")
+		fmt.Println("accept new connect",conn.LocalAddr(),conn.RemoteAddr())
 		client := &Client{
 			conn:   conn,
 			Server: s,

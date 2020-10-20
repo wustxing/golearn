@@ -8,9 +8,9 @@ import (
 )
 
 func Test_Client(t *testing.T) {
-	c, err := client.New("127.0.0.1:8300")
+	c, err := client.New("127.0.0.1:5000")
 	if err != nil {
-		t.Error(err)
+		t.Fatal(err)
 	}
 	user := &User{
 		ID:   1,
@@ -21,9 +21,10 @@ func Test_Client(t *testing.T) {
 		t.Error(err)
 	}
 	msg := fmt.Sprintf("%s%s", data, "\n")
-	resp, err := c.Send(msg)
+
+
+	err = c.Send(msg)
 	if err != nil {
 		t.Error(err)
 	}
-	t.Log(resp)
 }
