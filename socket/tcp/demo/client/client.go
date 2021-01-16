@@ -1,7 +1,6 @@
 package client
 
 import (
-	"bufio"
 	"net"
 	"time"
 )
@@ -23,16 +22,14 @@ func New(addr string) (*Client, error) {
 	return client, nil
 }
 
-func (c *Client) Send(message string) (string, error) {
+func (c *Client) Send(message string) ( error) {
 	_, err := c.conn.Write([]byte(message))
-	if err != nil {
-		return "", err
-	}
+	return err
 
-	reader := bufio.NewReader(c.conn)
-	resp, err := reader.ReadString('\n')
-	if err != nil {
-		return "", err
-	}
-	return resp, err
+	//reader := bufio.NewReader(c.conn)
+	//resp, err := reader.ReadString('\n')
+	//if err != nil {
+	//	return "", err
+	//}
+	//return resp, err
 }

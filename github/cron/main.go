@@ -34,6 +34,7 @@ func main() {
 
 func callYourFunc() {
 	fmt.Println(time.Now())
+	panic("hello")
 }
 
 func specFunc() {

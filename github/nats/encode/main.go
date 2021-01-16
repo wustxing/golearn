@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/nats-io/go-nats"
+	nats "github.com/nats-io/nats.go"
 	"time"
 )
 
-func main(){
+func main() {
 	nc, _ := nats.Connect(nats.DefaultURL)
 	c, _ := nats.NewEncodedConn(nc, nats.JSON_ENCODER)
 	defer c.Close()
@@ -21,9 +21,9 @@ func main(){
 
 	// EncodedConn can Publish any raw Go type using the registered Encoder
 	type person struct {
-		Name     string
-		Address  string
-		Age      int
+		Name    string
+		Address string
+		Age     int
 	}
 
 	// Go type Subscriber
@@ -38,17 +38,12 @@ func main(){
 
 	// Unsubscribe
 	sub, err := c.Subscribe("foo", nil)
-	...
 	sub.Unsubscribe()
 
 	// Requests
 	var response string
-	err := c.Request("help", "help me", &response, 10*time.Millisecond)
+	err = c.Request("help", "help me", &response, 10*time.Millisecond)
 	if err != nil {
 		fmt.Printf("Request failed: %v\n", err)
 	}
-
-	// Replying
-	c.Subscribe("help", func(subj, reply string, msg string) {
-		c
 }

@@ -25,6 +25,9 @@ func (c *Client) listen() {
 		if err != nil {
 			c.conn.Close()
 			c.Server.onClientConnectionClosed(c, err)
+			if opErr, ok := err.(*net.OpError); ok {
+				fmt.Println(opErr)
+			}
 			return
 		}
 		c.Server.onNewMessage(c, message)
@@ -70,7 +73,7 @@ func (s *server) Listen() {
 
 	for {
 		conn, _ := listener.Accept()
-		fmt.Println("accept new connect")
+		fmt.Println("accept new connect",conn.LocalAddr(),conn.RemoteAddr())
 		client := &Client{
 			conn:   conn,
 			Server: s,

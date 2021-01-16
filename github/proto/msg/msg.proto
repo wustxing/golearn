@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package msg;
+
+message Hello{
+    int32 intValue = 1;
+    string str = 2;
+    repeated string strArr = 4;
+}

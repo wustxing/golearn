@@ -1,44 +1,47 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
-	"log"
-	"net/http"
-	"time"
+	"fmt"
+	"io"
+	"os"
 )
 
-var mux map[string]func(w http.ResponseWriter, r *http.Request)
-
 func main() {
-	server := http.Server{
-		Addr:        ":8081",
-		Handler:     &myhandle{},
-		ReadTimeout: 5 * time.Second,
-	}
-	mux = make(map[string]func(w http.ResponseWriter, r *http.Request))
+	writer := NewLineBufferedWriter(os.Stdout)
+	defer writer.Flush()
 
-	mux["/"] = bytes.Index
+	done := make(chan int)
+
+	go func() {
+		fmt.Fprint(writer, "你好")
+		done <- 1
+	}()
+	m := <-done
+
+	println(m)
 }
 
-type myHandle struct{}
+type LineBufferedWriter struct {
+	*bufio.Writer
+}
 
-func (*myHandle) ServerHttp(w http.ResponseWriter, r *http.Request) {
-	log.Println("请求url:", r.URL.String())
-	log.Println("请求方法:", r.Method)
-
-	r.ParseForm()
-	log.Println("请求报文:", r)
-	log.Println("请求的参数:", r.Form)
-
-	if h, ok := mux[r.URL.String()]; ok {
-		h(w, r)
-	} else {
-		fileTer(w, r)
+func NewLineBufferedWriter(w io.Writer) *LineBufferedWriter {
+	return &LineBufferedWriter{
+		Writer: bufio.NewWriter(w),
 	}
 }
 
-type BaseJsonBean struct {
-	Code    int         `json:"Code"`
-	Message string      `json:"message"`
-	Data    interface{} `json:"data"`
+func (w *LineBufferedWriter) Write(p []byte) (n int, err error) {
+	n, err = w.Writer.Write(p)
+	if err != nil {
+		return n, err
+	}
+
+	if bytes.Contains(p, []byte{'\n'}) {
+		w.Flush()
+	}
+
+	return n, err
 }
