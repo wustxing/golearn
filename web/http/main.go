@@ -25,6 +25,4 @@ func ServerHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("body:", string(data))
 	}
 	w.Write([]byte("hello"))
-	____hello
-
 }

@@ -27,7 +27,7 @@ func main() {
 	//		wg.Done()
 	//	}()
 	//}
-	//wg.Wait()
+	//wg.Lock()
 	user := new(User)
 	user.c = time.NewTicker(time.Second)
 

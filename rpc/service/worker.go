@@ -6,6 +6,7 @@ type Worker interface {
 	Post(f func())
 	Run()
 	Close()
+	Len() int
 }
 
 //TODO 这里的实现 chan如果塞满会阻塞进程，可对比参照github.com/davyxu/cellnet EventQueue实现，选方案
@@ -17,6 +18,10 @@ func NewWorker() Worker {
 	p := new(Work)
 	p.funChan = make(chan func(), 1024)
 	return p
+}
+
+func (p *Work) Len() int {
+	return len(p.funChan)
 }
 
 func (p *Work) Post(f func()) {

@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/ankur-anand/simple-go-rpc v0.0.0-20190915054251-4f22f23e85a7
+	github.com/imroc/biu v0.0.0-20170329141542-0376ce6761c0 // indirect
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/robfig/cron v1.2.0
 	github.com/roylee0704/gron v0.0.0-20160621042432-e78485adab46
