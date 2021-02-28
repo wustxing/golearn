@@ -18,6 +18,7 @@ require (
 	github.com/roylee0704/gron v0.0.0-20160621042432-e78485adab46
 	github.com/sirupsen/logrus v1.6.0
 	github.com/tidwall/buntdb v1.1.2
+	github.com/tidwall/gjson v1.6.8
 	golang.org/dl v0.0.0-20200302224518-306f3096cb2f // indirect
 	golang.org/x/net v0.0.0-20190404232315-eb5bcb51f2a3
 	golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e
