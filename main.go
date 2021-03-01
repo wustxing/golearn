@@ -1,20 +1,28 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"math"
 )
 
-func main(){
-	var a int32 =math.MaxInt32-100
-	new := int64(a) + int64(101)
-	if new > math.MaxInt32 {
-		new = math.MaxInt32
+const data = `{"id":1,"obj":{"name":"xu","age":18}}`
+
+func main() {
+	var m map[string]interface{}
+	err := json.Unmarshal([]byte(data), &m)
+	fmt.Println(m, err)
+
+	var d []byte
+	for _, v := range m {
+		switch v.(type) {
+		case map[string]interface{}:
+			d, _ = json.Marshal(v)
+		case []interface{}:
+			d, _ = json.Marshal(v)
+		default:
+
+		}
 	}
-	fmt.Println(new)
-	a = int32(new)
-	fmt.Println(a)
-	fmt.Println(math.MaxInt32 )
+
+	fmt.Println(string(d))
 }
-
-
