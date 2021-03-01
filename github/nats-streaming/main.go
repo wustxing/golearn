@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	sc, err := stan.Connect("test-cluster", "11099999", stan.NatsURL("nats://127.0.0.1:5222"))
+	sc, err := stan.Connect("test-cluster", "11099999", stan.NatsURL("nats://127.0.0.1:4222"))
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -15,7 +15,7 @@ func main() {
 	sc.NatsConn()
 	_, err = sc.Subscribe("log_topic", func(m *stan.Msg) {
 		fmt.Printf("Recieved a message:%s\n", string(m.Data))
-	}, stan.DurableName("my-durable"))
+	}, stan.StartWithLastReceived())
 
 	time.Sleep(time.Hour)
 	//sub.Unsubscribe()

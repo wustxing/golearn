@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -30,5 +31,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(resp)
+	defer resp.Body.Close()
+	data1,err:=ioutil.ReadAll(resp.Body)
+	fmt.Println(string(data1))
 }

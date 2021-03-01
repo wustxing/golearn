@@ -39,7 +39,7 @@ func print() {
 
 func setupSigusr1Trap() {
 	c := make(chan os.Signal, 1)
-	signal.Notify(c, syscall.SIGUSR1)
+	signal.Notify(c, syscall.SIGTERM)
 	go func() {
 		for range c {
 			DumpStacks()
