@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github.com/0990/golearn/google/grpc"
+	"github.com/0990/golearn/rpc/grpc"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log"
