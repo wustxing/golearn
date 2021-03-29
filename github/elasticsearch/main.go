@@ -13,7 +13,7 @@ import (
 func main() {
 	cfg := elasticsearch.Config{
 		Addresses: []string{
-			"http://10.225.136.212:9200",
+			"http://127.0.0.1:9200",
 		},
 	}
 	es,err:=elasticsearch.NewClient(cfg)
@@ -34,7 +34,7 @@ func main() {
 	b.WriteString(`"}`)
 
 	req:=esapi.IndexRequest{
-		Index:"nuyan-log-159-2020.11.10",
+		Index:"2020.11.10",
 		DocumentID: "",
 		Body:strings.NewReader(b.String()),
 		Refresh: "true",
@@ -72,7 +72,7 @@ func main() {
 	}
 
 	res,err=es.Search(es.Search.WithContext(context.Background()),
-		es.Search.WithIndex("nuyan-log-159-2020.11.10"),
+		es.Search.WithIndex("2020.11.10"),
 		es.Search.WithBody(&buf),
 		es.Search.WithTrackTotalHits(true),
 		es.Search.WithPretty())

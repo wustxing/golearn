@@ -1,28 +1,41 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 )
 
 const data = `{"id":1,"obj":{"name":"xu","age":18}}`
 
-func main() {
-	var m map[string]interface{}
-	err := json.Unmarshal([]byte(data), &m)
-	fmt.Println(m, err)
+type User interface {
+	Id() int32
+}
 
-	var d []byte
-	for _, v := range m {
-		switch v.(type) {
-		case map[string]interface{}:
-			d, _ = json.Marshal(v)
-		case []interface{}:
-			d, _ = json.Marshal(v)
-		default:
+type user struct{
+	id int32
+}
 
+func(p *user)Id()int32{
+	return p.id
+}
+
+func delUser(id int32, users []*user) {
+	for i := 0; i < len(users); {
+		if users[i].Id() == id {
+			users = append(users[:i], users[i+1:]...)
+		} else {
+			i++
 		}
 	}
+	fmt.Println(users)
+}
 
-	fmt.Println(string(d))
+func main() {
+	var a interface{}
+	a = 1
+	if a==0{
+		fmt.Println("0")
+	}
+	if a==1{
+		fmt.Println("1")
+	}
 }

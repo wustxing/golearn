@@ -10,7 +10,7 @@ import (
 //var url = "nats://localhost:4222"
 
 //var url = "nats://localhost:5221,nats://localhost:5222,nats://localhost:5223"
-var url = "nats://10.225.136.212:5222,nats://10.225.136.212:5223"
+var url = "nats://127.0.0.1:5222,nats://127.0.0.1:5223"
 
 var pubConn stan.Conn
 

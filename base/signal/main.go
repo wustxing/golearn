@@ -15,6 +15,7 @@ import (
 //SIGSTOP和SIGCONT组合使用可以暂停和恢复程序
 //示例中setupsigusr1Trap 当kill -SIGUSR1 pid时,会打印dump（不会退出）,用于查日志
 //更多 https://books.studygolang.com/The-Golang-Standard-Library-by-Example/chapter16/16.03.html?h=signal
+//Kill 默认发的是syscall.SIGTERM信号
 
 func main() {
 	setupSigusr1Trap()

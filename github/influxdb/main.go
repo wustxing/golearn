@@ -11,7 +11,7 @@ func main(){
 	const org = "0990"
 
 
-	client := influxdb2.NewClient("http://10.225.136.212:8086", token)
+	client := influxdb2.NewClient("http://127.0.0.1:8086", token)
 	// always close client at the end
 	defer client.Close()
 
