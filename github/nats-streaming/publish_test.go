@@ -7,15 +7,12 @@ import (
 	"time"
 )
 
-//var url = "nats://localhost:4222"
-
-//var url = "nats://localhost:5221,nats://localhost:5222,nats://localhost:5223"
-var url = "nats://10.225.136.212:5222,nats://10.225.136.212:5223"
+var url = "nats://127.0.0.1:4222"
 
 var pubConn stan.Conn
 
 func TestPublish(t *testing.T) {
-	conn, err := stan.Connect("test-cluster", "111", stan.NatsURL(url), stan.SetConnectionLostHandler(ConnectionLostHandler))
+	conn, err := stan.Connect("test-cluster", "111", stan.NatsURL(url), stan.SetConnectionLostHandler(ConnectionLostHandler), stan.Pings(5, 2))
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -28,34 +25,36 @@ func TestPublish(t *testing.T) {
 
 func PublishPerSecond() {
 	var count int32
-	start := time.Now().Unix()
-	go func() {
-		ticker := time.NewTicker(time.Second * 2)
-		defer ticker.Stop()
-		for range ticker.C {
-			now := time.Now().Unix()
-			if now-start > 0 {
-				fmt.Printf("total:%v sendRate:%v \n", count, count/int32(now-start))
-			}
-		}
-	}()
+	//start := time.Now().Unix()
+	//go func() {
+	//	ticker := time.NewTicker(time.Second * 2)
+	//	defer ticker.Stop()
+	//	for range ticker.C {
+	//		now := time.Now().Unix()
+	//		if now-start > 0 {
+	//			fmt.Printf("total:%v sendRate:%v \n", count, count/int32(now-start))
+	//		}
+	//	}
+	//}()
 
 	for {
-		s := time.Now().String()
-		_, err := pubConn.PublishAsync("foo1", []byte(s), func(s string, err error) {
+		s := fmt.Sprintf("%d", count)
+		_, err := pubConn.PublishAsync("foo", []byte(s), func(s string, err error) {
 			if err != nil {
 				fmt.Println("send callback error", err)
 			}
 		})
 
 		if err != nil {
-			fmt.Println("send error,stop 20s", err)
-			time.Sleep(time.Second * 20)
-			fmt.Println("start pub")
+			fmt.Printf("send error:%v,count:%d \n", err, count)
+			//time.Sleep(time.Second * 10)
+			//fmt.Println("start pub")
+		} else {
+			fmt.Printf("send success,count:%d \n", count)
 		}
 
 		count++
-		time.Sleep(time.Microsecond * 100)
+		time.Sleep(time.Second * 2)
 		//
 		//now := time.Now().Unix()
 		//if now%10 == 0 && now-start > 0 {
