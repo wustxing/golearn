@@ -55,10 +55,10 @@ func main() {
 		v, errv := strconv.ParseFloat(string(ret[i+1]), 64)
 		fmt.Println(x, int64(v), errx, errv)
 
-		score, extend := Unmarshal(int64(ret[i+1]))
+		//score, extend := Unmarshal(int64(ret[i+1]))
 		output[int32(x)] = Score{
-			x: score,
-			y: extend,
+			x: 0,
+			y: 0,
 			v: int64(v),
 		}
 	}

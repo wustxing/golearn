@@ -18,7 +18,7 @@ func secret(user,realm string)string{
 }
 
 func handle(w http.ResponseWriter,r *auth.AuthenticatedRequest){
-	fmt.Fprintf(w,"hi",r.Username)
+	fmt.Fprint(w,"hi",r.Username)
 }
 
 func main(){

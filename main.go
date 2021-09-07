@@ -1,103 +1,71 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"io"
-	"io/ioutil"
-	"log"
-	"os"
-	"strconv"
+	"math/rand"
 )
 
 func main() {
-	var offset int64
-	of, err := os.OpenFile("offset.txt", os.O_CREATE|os.O_RDWR, 0666)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer of.Close()
 
-	ifdata, err := ioutil.ReadAll(of)
-	if err != nil {
-		log.Fatal(err)
-	}
+	fmt.Println(4 << 20)
+}
 
-	if len(ifdata) > 0 {
-		offset, err = strconv.ParseInt(string(ifdata), 10, 64)
-		if err != nil {
-			log.Fatal(err)
-		}
+func randomLevel() uint8 {
+	level := uint8(1)
+	for float32(rand.Int31()&0xFFFF) < (0.25 * 0xFFFF) {
+		level++
 	}
-
-	f, err := os.OpenFile("user.txt", os.O_RDONLY, 0666)
-	if err != nil {
-		log.Fatal(err)
+	if level < 32 {
+		return level
 	}
-	defer f.Close()
+	return level
+}
 
-	_, err = f.Seek(offset, io.SeekStart)
-	if err != nil {
-		log.Fatal(err)
+func varintEncode(val uint64) (ret []byte) {
+
+	for val >= 0x80 {
+		a := val & 0x7f
+		v := 0x80 | a
+		ret = append(ret, byte(v))
+		val >>= 7
 	}
 
-	//var currOffset int64
+	ret = append(ret, byte(val))
+	return
+}
 
-	br := bufio.NewReader(f)
-	var count int32
-	for {
-		count++
-		if count == 3 {
+func varintDecodeFwd(input []byte, maxSize uint64) uint64 {
+	var ret uint64 = 0
+	var i uint64 = 0
+	for ; i < maxSize && (input[i]&0x80) > 0; i++ {
+		ret |= uint64(input[i]&0x7f) << (7 * i)
+	}
+	if i == maxSize {
+		return 0
+	}
+	ret |= uint64(input[i]&0x7f) << (7 * (i))
+	i++
+	return ret
+}
+
+func varintDecodeRvs(input []byte, maxSize uint64) uint64 {
+
+	var ret uint64 = 0
+
+	var i uint64 = 0
+	for i := uint64(len(input) - 1); i >= 0; i-- {
+		b := input[i]
+		if i > maxSize || b&0x80 == 0 {
 			break
 		}
-		line, length, c := NextLine(br)
 
-		//s, _, c := br.ReadLine()
-		if c == io.EOF {
-			fmt.Println("eof")
-			return
-		}
-
-		//fmt.Println(string(s))
-		fmt.Println(string(line), length)
-		//fOffset, _ := f.Seek(0, io.SeekCurrent)
-		//currOffset = fOffset - int64(br.Buffered())
-		offset += int64(length)
-		WriteOffset(of, offset)
-	}
-}
-
-func WriteOffset(f *os.File, offset int64) error {
-	err := f.Truncate(0)
-	if err != nil {
-		return err
-	}
-	_, err = f.Seek(0, os.SEEK_SET)
-	if err != nil {
-		return err
-	}
-	_, err = f.WriteString(strconv.FormatInt(offset, 10))
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func NextLine(b *bufio.Reader) (line []byte, lenWithDelim int, err error) {
-	data, err := b.ReadBytes('\n')
-
-	if len(data) == 0 {
-		return nil, 0, err
+		ret |= uint64(b&0x7f) << (7 * i)
 	}
 
-	if data[len(data)-1] == '\n' {
-		drop := 1
-		if len(data) > 1 && data[len(data)-2] == '\r' {
-			drop = 2
-		}
-		length := len(data)
-		return data[:length-drop], length, nil
+	if i == maxSize {
+		return 0
 	}
-
-	return data, len(data), nil
+	ret |= uint64(input[i]&0x7f) << (7 * (i))
+	i++
+	return ret
 }
